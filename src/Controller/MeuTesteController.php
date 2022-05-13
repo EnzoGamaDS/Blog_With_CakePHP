@@ -33,10 +33,15 @@ class MeuTesteController extends AppController
         $shippers = $this->Shippers->get($id);
         debug($id);
     }
-    public function add($id = null){
+    public function add(){
         $this->autoRender = false;
         $tableShippers = TableRegistry::get('Shippers');
-        $shippers = $tableShippers->get($id);
-        debug($shippers);
+        $queryString = $this->request->getQuery();
+
+        $shippers = $tableShippers->newEntity();
+        $shippers->ShipperName = $queryString(['ShipperName']);
+        $shippers->Phone = $queryString(['Phone']);
+
+        debug($queryString);
     }
 }
