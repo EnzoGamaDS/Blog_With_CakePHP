@@ -3,6 +3,9 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Model\Entity\Supplier;
+use Cake\ORM\TableRegistry;
+
 /**
  * MeuTeste Controller
  *
@@ -17,11 +20,23 @@ class MeuTesteController extends AppController
      */
     public function index()
     {
-        //echo "Olá mundo";
-        //exit();
-        $this->autoRender = false; //Para que o controller não busque um view
-        $query = $this->request->acceptLanguage();
-        debug($query);
-        echo "Ola mundo".$query;
+        $this->autoRender = false;
+        $this->loadModel('Shippers');
+        $shippers = $this->Shippers->find('all')
+        ->toArray();
+        debug($shippers);
+    }
+
+    public function view($id = null){
+        $this->autoRender = false;
+        $this->loadModel('Shippers');
+        $shippers = $this->Shippers->get($id);
+        debug($id);
+    }
+    public function add($id = null){
+        $this->autoRender = false;
+        $tableShippers = TableRegistry::get('Shippers');
+        $shippers = $tableShippers->get($id);
+        debug($shippers);
     }
 }
