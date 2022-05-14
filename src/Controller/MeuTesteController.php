@@ -31,8 +31,9 @@ class MeuTesteController extends AppController
         $this->autoRender = false;
         $this->loadModel('Shippers');
         $shippers = $this->Shippers->get($id);
-        debug($id);
+        debug($shippers);
     }
+
     public function add(){
         $this->autoRender = false;
         $tableShippers = TableRegistry::get('Shippers');
@@ -44,6 +45,19 @@ class MeuTesteController extends AppController
         $result = $tableShippers->save($shipper);
 
         debug($result);
+    }
+
+    public function update($id = null){
+        $this->autoRender = false;
+        $tableShippers = TableRegistry::get('Shippers');
+        $queryString = $this->request->getQuery();
+
+        $shipper = $tableShippers->get($id);
+        $shipper->ShipperName = $queryString['ShipperName'];
+        $shipper->Phone = $queryString['Phone'];
+        $result = $tableShippers->save($shipper);
+
+        debug($shipper);
     }
 
 }
