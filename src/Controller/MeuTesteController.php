@@ -60,4 +60,14 @@ class MeuTesteController extends AppController
         debug($shipper);
     }
 
+    public function delete($id = null){
+        $this->autoRender = false;
+        $tableShippers = TableRegistry::get('Shippers');
+
+        $shipper = $tableShippers->get($id);
+        $result = $tableShippers->delete($shipper);
+        debug($result);
+    }
+
+
 }
