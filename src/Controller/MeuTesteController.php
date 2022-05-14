@@ -38,10 +38,12 @@ class MeuTesteController extends AppController
         $tableShippers = TableRegistry::get('Shippers');
         $queryString = $this->request->getQuery();
 
-        $shippers = $tableShippers->newEntity();
-        $shippers->ShipperName = $queryString(['ShipperName']);
-        $shippers->Phone = $queryString(['Phone']);
+        $shipper = $tableShippers->newEmptyEntity();
+        $shipper->ShipperName = $queryString['ShipperName'];
+        $shipper->Phone = $queryString['Phone'];
+        $result = $tableShippers->save($shipper);
 
-        debug($queryString);
+        debug($result);
     }
+
 }
