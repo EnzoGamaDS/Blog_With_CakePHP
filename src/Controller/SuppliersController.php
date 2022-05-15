@@ -36,7 +36,6 @@ class SuppliersController extends AppController
             'contain' => [],
         ]);
 
-        debug($supplier);
         $this->set(compact('supplier'));
     }
 
@@ -50,8 +49,6 @@ class SuppliersController extends AppController
         $supplier = $this->Suppliers->newEmptyEntity();
         if ($this->request->is('post')) {
             $supplier = $this->Suppliers->patchEntity($supplier, $this->request->getData());
-            // setando um por um
-            // $supplier->Address = $this->request->getData()['Address'];
             if ($this->Suppliers->save($supplier)) {
                 $this->Flash->success(__('The supplier has been saved.'));
 

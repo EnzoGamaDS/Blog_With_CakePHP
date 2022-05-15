@@ -4,12 +4,12 @@ declare(strict_types=1);
 namespace App\Controller;
 
 /**
- * Shippers Controller
+ * Employees Controller
  *
- * @property \App\Model\Table\ShippersTable $Shippers
- * @method \App\Model\Entity\Shipper[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
+ * @property \App\Model\Table\EmployeesTable $Employees
+ * @method \App\Model\Entity\Employee[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
  */
-class ShippersController extends AppController
+class EmployeesController extends AppController
 {
     /**
      * Index method
@@ -18,25 +18,25 @@ class ShippersController extends AppController
      */
     public function index()
     {
-        $shippers = $this->paginate($this->Shippers);
+        $employees = $this->paginate($this->Employees);
 
-        $this->set(compact('shippers'));
+        $this->set(compact('employees'));
     }
 
     /**
      * View method
      *
-     * @param string|null $id Shipper id.
+     * @param string|null $id Employee id.
      * @return \Cake\Http\Response|null|void Renders view
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
     public function view($id = null)
     {
-        $shipper = $this->Shippers->get($id, [
+        $employee = $this->Employees->get($id, [
             'contain' => [],
         ]);
 
-        $this->set(compact('shipper'));
+        $this->set(compact('employee'));
     }
 
     /**
@@ -46,58 +46,58 @@ class ShippersController extends AppController
      */
     public function add()
     {
-        $shipper = $this->Shippers->newEmptyEntity();
+        $employee = $this->Employees->newEmptyEntity();
         if ($this->request->is('post')) {
-            $shipper = $this->Shippers->patchEntity($shipper, $this->request->getData());
-            if ($this->Shippers->save($shipper)) {
-                $this->Flash->success(__('The shipper has been saved.'));
+            $employee = $this->Employees->patchEntity($employee, $this->request->getData());
+            if ($this->Employees->save($employee)) {
+                $this->Flash->success(__('The employee has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The shipper could not be saved. Please, try again.'));
+            $this->Flash->error(__('The employee could not be saved. Please, try again.'));
         }
-        $this->set(compact('shipper'));
+        $this->set(compact('employee'));
     }
 
     /**
      * Edit method
      *
-     * @param string|null $id Shipper id.
+     * @param string|null $id Employee id.
      * @return \Cake\Http\Response|null|void Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
     public function edit($id = null)
     {
-        $shipper = $this->Shippers->get($id, [
+        $employee = $this->Employees->get($id, [
             'contain' => [],
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $shipper = $this->Shippers->patchEntity($shipper, $this->request->getData());
-            if ($this->Shippers->save($shipper)) {
-                $this->Flash->success(__('The shipper has been saved.'));
+            $employee = $this->Employees->patchEntity($employee, $this->request->getData());
+            if ($this->Employees->save($employee)) {
+                $this->Flash->success(__('The employee has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The shipper could not be saved. Please, try again.'));
+            $this->Flash->error(__('The employee could not be saved. Please, try again.'));
         }
-        $this->set(compact('shipper'));
+        $this->set(compact('employee'));
     }
 
     /**
      * Delete method
      *
-     * @param string|null $id Shipper id.
+     * @param string|null $id Employee id.
      * @return \Cake\Http\Response|null|void Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
     public function delete($id = null)
     {
         $this->request->allowMethod(['post', 'delete']);
-        $shipper = $this->Shippers->get($id);
-        if ($this->Shippers->delete($shipper)) {
-            $this->Flash->success(__('The shipper has been deleted.'));
+        $employee = $this->Employees->get($id);
+        if ($this->Employees->delete($employee)) {
+            $this->Flash->success(__('The employee has been deleted.'));
         } else {
-            $this->Flash->error(__('The shipper could not be deleted. Please, try again.'));
+            $this->Flash->error(__('The employee could not be deleted. Please, try again.'));
         }
 
         return $this->redirect(['action' => 'index']);

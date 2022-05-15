@@ -53,7 +53,7 @@ class SuppliersTable extends Table
         $validator
             ->scalar('SupplierName')
             ->maxLength('SupplierName', 255)
-            ->notEmpty('SupplierName', 'Este campo não pode');
+            ->allowEmptyString('SupplierName');
 
         $validator
             ->scalar('ContactName')
