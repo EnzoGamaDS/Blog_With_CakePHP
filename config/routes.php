@@ -23,6 +23,7 @@
 
 use Cake\Routing\Route\DashedRoute;
 use Cake\Routing\RouteBuilder;
+use Cake\Routing\Router;
 
 return static function (RouteBuilder $routes) {
     /*
@@ -52,10 +53,16 @@ return static function (RouteBuilder $routes) {
          */
         $builder->connect('/', ['controller' => 'Pages', 'action' => 'display', 'home']);
 
+        $builder->connect('/entregador', ['controller' => 'shippers', 'action' => 'index']);
+        //$routes->connect('/entregador/add', ['controller' => 'shippers', 'action' => 'add']);
+        $builder->connect('/entregador/:action/*', ['controller' => 'shippers', 'action' => 'index']);
+        $builder->redirect('/google', 'http://google.com');
+
         /*
          * ...and connect the rest of 'Pages' controller's URLs.
          */
         $builder->connect('/pages/*', 'Pages::display');
+
 
         /*
          * Connect catchall routes for all controllers.
@@ -73,6 +80,7 @@ return static function (RouteBuilder $routes) {
         $builder->fallbacks();
     });
 
+
     /*
      * If you need a different set of middleware or none at all,
      * open new scope and define routes there.
@@ -88,4 +96,15 @@ return static function (RouteBuilder $routes) {
      * });
      * ```
      */
+
+
+    $routes->scope('/produtos', function(RouteBuilder $routes){
+        $routes->connect('/', ['controller' => 'products', 'action' => 'index']);
+        $routes->connect('/:action/*', ['controller' => 'products']);
+        $routes->connect('/adicionar', ['controller' => 'products', 'action' => 'add']);
+        $routes->fallbacks(DashedRoute::class);
+
+    });
+
 };
+
