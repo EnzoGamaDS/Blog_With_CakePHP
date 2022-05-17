@@ -29,4 +29,8 @@ class User extends Entity
         'email' => true,
         'senha' => true,
     ];
+
+    protected $hidden = [
+        'senha' => true,
+    ];
 }

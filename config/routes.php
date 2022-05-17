@@ -58,6 +58,10 @@ return static function (RouteBuilder $routes) {
         $builder->connect('/entregador/:action/*', ['controller' => 'shippers', 'action' => 'index']);
         $builder->redirect('/google', 'http://google.com');
 
+
+        $builder->connect('/login', ['controller' => 'users', 'action' => 'login']);
+        $builder->connect('/logout', ['controller' => 'users', 'action' => 'logout']);
+
         /*
          * ...and connect the rest of 'Pages' controller's URLs.
          */

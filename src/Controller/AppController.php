@@ -16,6 +16,7 @@ declare(strict_types=1);
  */
 namespace App\Controller;
 
+use Cake\Controller\Component\AuthComponent;
 use Cake\Controller\Controller;
 
 /**
@@ -43,6 +44,21 @@ class AppController extends Controller
 
         $this->loadComponent('RequestHandler');
         $this->loadComponent('Flash');
+        //Validações do auth
+        $this->loadComponent('Auth', [
+            'authenticate' => [
+                'Form' => [
+                    'fields' => ['username' => 'email', 'password' => 'senha']
+                ]
+            ],
+            'loginAction' => ['controller' => 'Users', 'action' => 'login'],
+            'loginRedirect' => ['controller' => 'Users', 'action' => 'index'],
+            'logoutRedirect' => ['controller' => 'Users', 'action' => 'logout'],
+        ]);
+
+        $this->Auth->setConfig('authenticate', [
+            AuthComponent::ALL => ['userModel' => 'Users']
+        ]);
 
         /*
          * Enable the following component for recommended CakePHP form protection settings.

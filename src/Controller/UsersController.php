@@ -71,6 +71,8 @@ class UsersController extends AppController
         $user = $this->Users->get($id, [
             'contain' => [],
         ]);
+        //oculta senha na tela de edição caso recarregue a página
+        $user->unset('senha');
         if ($this->request->is(['patch', 'post', 'put'])) {
             $user = $this->Users->patchEntity($user, $this->request->getData());
             if ($this->Users->save($user)) {
@@ -101,5 +103,26 @@ class UsersController extends AppController
         }
 
         return $this->redirect(['action' => 'index']);
+    }
+    public function login(){
+        if ($this->request->is('post')) {
+
+            $dados = $this->request->getData();
+
+            $user =$this->Users->find('all')
+                ->where(['email' => $dados['username']])
+                ->where(['senha' => $dados['password']])
+                ->first();
+
+                if ($user) {
+                    $this->Auth->setUser($user);
+                    return $this->redirect('/users/index');
+                }else{
+                    $this->Flash->error('Email ou senha invalido.');
+                }
+        }
+    }
+    public function logout(){
+        return $this->redirect($this->Auth->logout());
     }
 }
