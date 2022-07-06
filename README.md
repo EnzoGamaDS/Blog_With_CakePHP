@@ -1,8 +1,39 @@
-# Maio, 2022
+# Blog Cake
 
-<h3>Requisitos</h3>
-     - CakePHP 4.0<br>
-     - PHP 8.1<br>
-     - PHP 8.1<br>
-     - SGBD MySQL 8.0.21<br>
-     - composer v2.3<br>
+![GitHub](https://img.shields.io/badge/CakePHP-20232A?style=for-the-badge&logo=php&logoColor=61DAFB)
+
+> O projeto Blog com cake tem a ideia de aprimorar meus conhecimentos no framework CakePHP.
+
+### Modificações futuras 
+
+Projeto em desenvolvimento
+
+- [ ] Implementar Front-end com Angular
+- [ ] Fazer servidor
+
+## 💻 Pré-requisitos
+
+ * Projeto desenvolvido com a versão 7.4.26 do PHP.
+
+Para instalar o Blog, siga estas etapas:
+
+Clone o repositorio:
+```
+git fork https://github.com/EnzoGamaDS/Blog_With_CakePHP.git;
+```
+Sevidor
+```
+cd bin
+php cake.php
+````
+ 
+ ## ☕ Usando <BlogCake>
+
+Para usar <BlogCake> no servidor locar, siga estas etapas:
+
+Runando Cake
+```
+php cake.php
+````
+ 
+ Abra http://localhost:8000 no seu navegador favorito para ver o sistema funcionado.
